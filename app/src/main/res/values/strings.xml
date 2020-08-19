@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Android Test</string>
+
+    <string-array name="user_type">
+        <item>visitor</item>
+        <item>resident</item>
+    </string-array>
+</resources>
