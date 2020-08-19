@@ -5,21 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.RegisterActivity"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="@android:color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iv_logo"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="24dp"
-            android:src="@drawable/ic_campaign"
+        <TextView
+            android:id="@+id/welcome_heading"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:gravity="center"
+            android:text="Create Account"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/signin_heading"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="Create a new account to get started"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcome_heading"
+            android:gravity="center"/>
 
         <EditText
             android:id="@+id/et_fname"
@@ -35,9 +59,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_logo"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/signin_heading"
+            android:backgroundTint="@color/lighterGray"
+            android:background="@drawable/custom_rounded"
+            android:paddingRight="22dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:drawablePadding="16dp"
+            android:drawableLeft="@drawable/ic_profile"
+            android:drawableTint="#2493ff"/>
 
         <EditText
             android:id="@+id/et_lname"
@@ -50,11 +81,18 @@
             android:layout_marginRight="24dp"
             android:hint="Lastname"
             android:inputType="text"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_fname" />
+            app:layout_constraintTop_toBottomOf="@+id/et_fname"
+            android:backgroundTint="@color/lighterGray"
+            android:background="@drawable/custom_rounded"
+            android:paddingLeft="10dp"
+            android:drawablePadding="16dp"
+            android:drawableLeft="@drawable/ic_profile"
+            android:drawableTint="#2493ff"
+            android:paddingRight="22dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"/>
 
         <EditText
             android:id="@+id/et_ctc_num"
@@ -70,8 +108,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_lname"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"/>
+            android:backgroundTint="@color/lighterGray"
+            android:background="@drawable/custom_rounded"
+            android:paddingLeft="10dp"
+            android:drawablePadding="16dp"
+            android:drawableLeft="@drawable/ic_call"
+            android:drawableTint="#2493ff"
+            android:paddingRight="22dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"/>
 
         <EditText
             android:id="@+id/et_email"
@@ -87,8 +132,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_ctc_num"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"/>
+            android:backgroundTint="@color/lighterGray"
+            android:background="@drawable/custom_rounded"
+            android:paddingLeft="10dp"
+            android:drawablePadding="16dp"
+            android:drawableLeft="@drawable/ic_address"
+            android:drawableTint="#2493ff"
+            android:paddingRight="22dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"/>
 
         <EditText
             android:id="@+id/et_passw"
@@ -104,8 +156,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_email"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"/>
+            android:backgroundTint="@color/lighterGray"
+            android:background="@drawable/custom_rounded"
+            android:paddingLeft="10dp"
+            android:drawablePadding="16dp"
+            android:drawableLeft="@drawable/ic_lock"
+            android:drawableTint="#2493ff"
+            android:paddingRight="22dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"/>
 
         <EditText
             android:id="@+id/et_re_passw"
@@ -121,8 +180,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_passw"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"/>
+            android:backgroundTint="@color/lighterGray"
+            android:background="@drawable/custom_rounded"
+            android:paddingLeft="10dp"
+            android:drawablePadding="16dp"
+            android:drawableLeft="@drawable/ic_lock"
+            android:drawableTint="#2493ff"
+            android:paddingRight="22dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"/>
 
         <Button
             android:id="@+id/btn_register"
@@ -133,13 +199,13 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:text="REGISTER"
+            android:text="CREATE ACCOUNT"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner_type"
             android:background="@drawable/custom_rounded"
-            android:backgroundTint="@color/colorRed"
+            android:backgroundTint="@color/colorPrimary"
             android:textColor="@android:color/white"/>
 
         <TextView
@@ -168,11 +234,13 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_type_heading"
-            android:textColor="@android:color/white"
+            android:backgroundTint="@color/lighterGray"
+            android:background="@drawable/custom_rounded"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            android:backgroundTint="@android:color/white"
-            android:foregroundTint="@android:color/white" />
+            style="@style/TextAppearance.AppCompat.Medium"/>
 
         <LinearLayout
             android:id="@+id/layout"
@@ -192,11 +260,13 @@
 
             <TextView
                 android:id="@+id/tv_login"
-                style="@style/TextAppearance.AppCompat.Medium"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Login"
-                android:paddingLeft="4dp" />
+                android:paddingLeft="4dp"
+                android:textColor="@color/colorPrimary"/>
 
         </LinearLayout>
 

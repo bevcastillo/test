@@ -2,11 +2,14 @@ package com.example.androidtest.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,22 +33,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText et_email, et_passw;
     Button btnLogin;
     TextView tvRegister;
+    ImageView iv_logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setTitle("Login");
-
+        //changing to ligh status bar
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         //
         et_email = findViewById(R.id.et_email);
         et_passw = findViewById(R.id.et_passw);
         btnLogin = findViewById(R.id.btn_login);
         tvRegister = findViewById(R.id.tv_register);
+        iv_logo = findViewById(R.id.iv_logo);
 
         btnLogin.setOnClickListener(this);
         tvRegister.setOnClickListener(this);
+
+        //adding animation to logo
+        Animator translateAnimator = AnimatorInflater.loadAnimator(this, R.animator.translate);
+        translateAnimator.setTarget(iv_logo);
+        translateAnimator.start();
+
     }
 
     @Override

@@ -2,12 +2,15 @@ package com.example.androidtest.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +48,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        setTitle("Register");
+        //changing to ligh status bar
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         //
         et_fname = findViewById(R.id.et_fname);
@@ -65,6 +69,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         gson = gsonBuilder.create();
 
         spinnerType.setOnItemSelectedListener(this);
+
     }
 
     @Override
@@ -207,7 +212,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
     public void userLogin() {
-        Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
         startActivity(intent);
     }
 

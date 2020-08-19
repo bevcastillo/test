@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.MainActivity"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="@android:color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,13 +14,46 @@
 
         <ImageView
             android:id="@+id/iv_logo"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_marginTop="24dp"
             android:src="@drawable/ic_campaign"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/welcome_heading"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="Welcome Back"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_logo"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/signin_heading"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="Sign in to continue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcome_heading"
+            android:gravity="center"/>
 
         <EditText
             android:id="@+id/et_email"
@@ -27,17 +61,24 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="42dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
+            android:background="@drawable/custom_rounded"
+            android:backgroundTint="@color/lighterGray"
             android:hint="Email"
             android:inputType="text"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
+            android:paddingLeft="10dp"
+            android:drawablePadding="16dp"
+            android:drawableLeft="@drawable/ic_address"
+            android:drawableTint="#2493ff"
+            android:paddingTop="10dp"
+            android:paddingRight="22dp"
+            android:paddingBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_logo"/>
+            app:layout_constraintTop_toBottomOf="@+id/signin_heading" />
 
         <EditText
             android:id="@+id/et_passw"
@@ -46,15 +87,22 @@
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/custom_rounded"
+            android:backgroundTint="@color/lighterGray"
             android:hint="Password"
             android:inputType="textPassword"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
+            android:paddingLeft="10dp"
+            android:drawablePadding="16dp"
+            android:drawableLeft="@drawable/ic_lock"
+            android:drawableTint="#2493ff"
+            android:paddingTop="10dp"
+            android:paddingRight="22dp"
+            android:paddingBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_email"/>
+            app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
         <Button
             android:id="@+id/btn_login"
@@ -65,12 +113,12 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:text="LOGIN"
+            android:text="SIGN IN"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_passw"
             android:background="@drawable/custom_rounded"
-            android:backgroundTint="@color/colorRed"
+            android:backgroundTint="@color/colorPrimary"
             android:textColor="@android:color/white"/>
 
         <LinearLayout
@@ -90,11 +138,13 @@
 
             <TextView
                 android:id="@+id/tv_register"
-                style="@style/TextAppearance.AppCompat.Medium"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Register"
-                android:paddingLeft="4dp" />
+                android:text="Create account"
+                android:textStyle="bold"
+                android:paddingLeft="4dp"
+                android:textColor="@color/colorPrimary"/>
 
         </LinearLayout>
 
