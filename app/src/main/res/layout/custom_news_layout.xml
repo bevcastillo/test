@@ -9,53 +9,45 @@
 
     <ImageView
         android:id="@+id/iv_article_image"
-        android:layout_width="150dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         card_view:layout_constraintBottom_toBottomOf="parent"
         card_view:layout_constraintCircleRadius="10dp"
-        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
         card_view:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
         android:id="@+id/tv_title"
-        style="@style/TextAppearance.AppCompat.Title"
+        style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:ellipsize="end"
         android:maxLines="2"
         android:text="some title"
-        card_view:layout_constraintEnd_toStartOf="@+id/iv_article_image"
-        card_view:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toEndOf="@+id/iv_article_image"
         card_view:layout_constraintTop_toTopOf="@+id/iv_article_image" />
-
-    <ImageView
-        android:id="@+id/imageview"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/ic_watch"
-        android:tint="@android:color/darker_gray"
-        card_view:layout_constraintBottom_toBottomOf="@+id/tv_date"
-        card_view:layout_constraintStart_toStartOf="@+id/tv_title"
-        card_view:layout_constraintTop_toTopOf="@+id/tv_date" />
 
     <TextView
         android:id="@+id/tv_date"
+        style="@style/TextAppearance.AppCompat.Caption"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginBottom="8dp"
         android:text="00-00-00"
-        card_view:layout_constraintEnd_toStartOf="@+id/iv_article_image"
-        card_view:layout_constraintStart_toEndOf="@+id/imageview"
+        card_view:layout_constraintBottom_toBottomOf="@+id/iv_article_image"
+        card_view:layout_constraintEnd_toEndOf="@+id/tv_title"
         card_view:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <View

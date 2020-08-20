@@ -8,7 +8,7 @@
         android:valueTo="50"
         android:valueType="floatType"
         android:repeatMode="reverse"
-        android:repeatCount="infinite"/>
+        android:repeatCount="3"/>
 
 <!--    <objectAnimator-->
 <!--        xmlns:android="http://schemas.android.com/apk/res/android"-->

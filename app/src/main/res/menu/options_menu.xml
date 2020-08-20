@@ -6,6 +6,6 @@
         android:title="My Profile"/>
     <item
         android:id="@+id/menu_logout"
-        android:title="Logout"/>
+        android:title="Log out"/>
 
 </menu>

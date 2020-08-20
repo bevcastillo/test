@@ -1,11 +1,13 @@
 package com.example.androidtest.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -17,6 +19,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.androidtest.R;
 import com.example.androidtest.model.articles.Articles;
 import com.example.androidtest.model.articles.Datum;
+import com.example.androidtest.views.ArticleDetailsActivity;
 
 import java.util.List;
 
@@ -41,6 +44,32 @@ public class ArticlesAdpater extends RecyclerView.Adapter<ArticlesAdpater.ViewHo
         final View view;
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_news_layout, parent, false);
         final ViewHolder viewHolder = new ViewHolder(view);
+
+        viewHolder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = listdata.get(viewHolder.getAdapterPosition()).getArticleId();
+                String title = listdata.get(viewHolder.getAdapterPosition()).getTitle();
+                String content = listdata.get(viewHolder.getAdapterPosition()).getContent();
+                String date = listdata.get(viewHolder.getAdapterPosition()).getDateCreated().getDateDb();
+                String timestamp = listdata.get(viewHolder.getAdapterPosition()).getDateCreated().getTimestamp();
+                String thumbnail = listdata.get(viewHolder.getAdapterPosition()).getThumbnail().getThumbPath();
+                String fullImage = listdata.get(viewHolder.getAdapterPosition()).getThumbnail().getFullPath();
+
+                //passing data to ViewArticle activity
+                Intent intent = new Intent(v.getContext(), ArticleDetailsActivity.class);
+                intent.putExtra("article_id", id);
+                intent.putExtra("article_title", title);
+                intent.putExtra("article_content", content);
+                intent.putExtra("article_date", date);
+                intent.putExtra("article_tStamp", timestamp);
+                intent.putExtra("article_thumbnail", thumbnail);
+                intent.putExtra("article_fullImage", fullImage);
+
+
+                v.getContext().startActivity(intent);
+            }
+        });
 
         return viewHolder;
     }

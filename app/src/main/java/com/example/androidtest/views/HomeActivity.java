@@ -6,22 +6,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.request.RequestOptions;
-import com.example.androidtest.Constant;
+import com.example.androidtest.helper.Constant;
 import com.example.androidtest.R;
 import com.example.androidtest.adapter.ArticlesAdpater;
 import com.example.androidtest.model.ApiResponse;
@@ -30,19 +26,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -60,7 +53,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        setTitle("Home");
+        setTitle("News Articles");
 
         tv_mssg = findViewById(R.id.tv_mssg);
         swipeRefreshLayout = findViewById(R.id.swipeToRefresh);
@@ -69,8 +62,11 @@ public class HomeActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                displayMssg();
-                Toast.makeText(HomeActivity.this, "Refreshed.", Toast.LENGTH_SHORT).show();
+                try {
+                    displayArticles();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -88,25 +84,11 @@ public class HomeActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        displayMssg();
-
         try {
             displayArticles();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void displayMssg() {
-        //getting the mssg data from MainActivity
-        Bundle bundle = this.getIntent().getExtras();
-
-        if (bundle != null) {
-            strMssg = bundle.getString("mssg");
-            tv_mssg.setText(strMssg);
-        }
-
-        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -141,9 +123,9 @@ public class HomeActivity extends AppCompatActivity {
     private void logoutUser() {
         AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
 
-        builder.setTitle("Logout");
-        builder.setMessage("Are you sure you want to logout?");
-        builder.setPositiveButton("LOGOUT", new DialogInterface.OnClickListener() {
+        builder.setTitle("Log out");
+        builder.setMessage("Are you sure you want to log out?");
+        builder.setPositiveButton("LOG OUT", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -178,6 +160,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     void displayArticles() throws IOException {
+        swipeRefreshLayout.setRefreshing(false);
 
         SharedPreferences userTokenPref = getApplicationContext().getSharedPreferences("UserToken", MODE_PRIVATE);
         userToken = (userTokenPref.getString("token",""));

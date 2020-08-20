@@ -10,8 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.bumptech.glide.request.RequestOptions;
-import com.example.androidtest.Constant;
+import com.example.androidtest.helper.Constant;
 import com.example.androidtest.R;
 import com.example.androidtest.model.ApiResponse;
 import com.example.androidtest.model.Payload;

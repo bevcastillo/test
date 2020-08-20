@@ -21,7 +21,8 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/custom_loading_image"/>
 
         <TextView
             android:id="@+id/tv_image_name"
@@ -66,7 +67,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:background="@android:color/white"
+            android:background="@drawable/custom_rounded"
+            android:backgroundTint="@android:color/white"
             android:orientation="vertical"
             android:paddingLeft="16dp"
             android:paddingTop="32dp"
@@ -93,10 +95,13 @@
 
             <TextView
                 android:id="@+id/tv_mssg"
-                style="@style/TextAppearance.AppCompat.Title"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Profile Information" />
+                android:fontFamily="@font/hind_vadodara_medium"
+                android:text="Profile Information"
+                android:textAllCaps="true"
+                android:textStyle="bold" />
 
             <View
                 android:id="@+id/view"
@@ -312,7 +317,8 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:background="@android:color/white"
+            android:background="@drawable/custom_rounded"
+            android:backgroundTint="@android:color/white"
             android:orientation="vertical"
             android:paddingLeft="16dp"
             android:paddingTop="32dp"
@@ -324,10 +330,12 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_update_prof">
 
             <TextView
-                style="@style/TextAppearance.AppCompat.Title"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Your account details" />
+                android:text="Your account details"
+                android:textAllCaps="true"/>
 
             <View
                 android:id="@+id/view1"
