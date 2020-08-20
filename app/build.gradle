@@ -56,4 +56,6 @@ dependencies {
     // Shimmer facebook effect when data is loading
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
 }

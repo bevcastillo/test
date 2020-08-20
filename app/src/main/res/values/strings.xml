@@ -2,8 +2,8 @@
     <string name="app_name">Android Test</string>
 
     <string-array name="user_type">
-        <item>visitor</item>
-        <item>resident</item>
+        <item>Visitor</item>
+        <item>Resident</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

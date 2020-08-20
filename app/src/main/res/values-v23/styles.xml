@@ -5,5 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/hind_vadodara</item>
+        <item name="fontFamily">@font/hind_vadodara</item>
     </style>
 </resources>

@@ -49,7 +49,6 @@ public class ArticlesAdpater extends RecyclerView.Adapter<ArticlesAdpater.ViewHo
 
         Articles articles = listdata.get(position);
 
-
     }
 
     @Override

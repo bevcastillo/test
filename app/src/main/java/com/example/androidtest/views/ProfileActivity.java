@@ -1,23 +1,35 @@
 package com.example.androidtest.views;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.androidtest.Constant;
 import com.example.androidtest.R;
 import com.example.androidtest.model.ApiResponse;
+import com.example.androidtest.model.Payload;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -34,7 +46,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 tv_createDate, tv_lastLoggedin, tv_iden_off_id, tv_iden_contact, tv_iden_name,
                 tv_iden_bdate, tv_iden_age, tv_iden_cvstat, tv_iden_uname, tv_iden_email,
                 tv_iden_residence, tv_iden_permanent_addr, tv_iden_create_date, tv_update_prof,
-                tv_update_passw, tv_contact;
+                tv_update_passw, tv_contact, tv_imagename;
+
+    ImageView iv_thumbnail;
+
+    Button btnUpload;
 
     ShimmerFrameLayout shimmerTitle;
 
@@ -43,7 +59,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     Gson gson;
 
     String userToken;
-    String lname, fname, mname, suffix, bdate, uname, email, contact, residenceAddr;
+    String lname, fname, mname, suffix, bdate, uname, email, contact, residenceAddr, passw;
+
+    private static final int PICK_IMAGE = 100;
+
+    private RequestOptions options;
+
+    Uri imageUri;
+
 
 
     @Override
@@ -77,6 +100,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         tv_update_prof = findViewById(R.id.tv_update_prof);
         tv_update_passw = findViewById(R.id.tv_update_passw);
         tv_contact = findViewById(R.id.tv_contact);
+        iv_thumbnail = findViewById(R.id.iv_photo);
+        btnUpload = findViewById(R.id.btn_upload);
+        tv_imagename = findViewById(R.id.tv_image_name);
+
+
+
+        options = new RequestOptions().centerCrop().placeholder(R.drawable.custom_circle_image).error(R.drawable.custom_circle_image);
 
 //        //shimmers
 //        shimmerTitle = findViewById(R.id.shimmer_title);
@@ -97,6 +127,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         tv_update_prof.setOnClickListener(this);
         tv_update_passw.setOnClickListener(this);
+        btnUpload.setOnClickListener(this);
+        iv_thumbnail.setOnClickListener(this);
 
 
         try {
@@ -147,6 +179,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     public void run() {
 
                         ApiResponse apiResponse = gson.fromJson(jsonData, ApiResponse.class);
+                        Payload payload = gson.fromJson(jsonData, Payload.class);
 
                         //getting data from ApiResponse object
 
@@ -164,9 +197,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         uname = apiResponse.getData().getUsername();
                         email = apiResponse.getData().getEmail();
                         residenceAddr = apiResponse.getData().getResidenceAddress();
-                        String brgy = apiResponse.getData().getBrgy();
-                        String district = apiResponse.getData().getDistrict();
                         contact = apiResponse.getData().getContactNumber();
+
+
+                        passw = payload.getPassw();
+
+                        String thumbnailUrl = apiResponse.getData().getAvatar().getThumbPath();
+
 
                         String createDate = apiResponse.getData().getDateCreated().getDateDb();
                         String lastLoggedin = apiResponse.getData().getLastLogin().getDateDb();
@@ -180,11 +217,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         tv_bdate.setText(bdate);
                         tv_age.setText(age);
                         tv_cvstatus.setText(civilStat);
-                        tv_addr.setText(residenceAddr+" "+brgy+" "+district);
+                        tv_addr.setText(residenceAddr);
                         tv_email.setText(email);
                         tv_createDate.setText(createDate);
                         tv_lastLoggedin.setText(lastLoggedin);
                         tv_contact.setText(contact);
+
+                        Glide.with(ProfileActivity.this).load(thumbnailUrl).into(iv_thumbnail);
 
                     }
                 });
@@ -204,12 +243,73 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.tv_update_passw:
                 updateUserPassw();
                 break;
+            case R.id.iv_photo:
+                uploadImage();
+                break;
+            case R.id.btn_upload:
+
+                break;
         }
     }
 
+
+
+    private void uploadImage() {
+        Intent intent  = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,"Select Picture"), PICK_IMAGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
+            imageUri = data.getData();
+            iv_thumbnail.setImageURI(imageUri);
+
+
+//            String filePath = getPath(imageUri);
+//            String file_extn = filePath.substring(filePath.lastIndexOf(".") +1);
+//            tv_imagename.setText(filePath);
+//
+//            try {
+//                if (file_extn.equals("img") || file_extn.equals("jpg") || file_extn.equals("jpeg")
+//                        || file_extn.equals("gif") || file_extn.equals("png")) {
+//
+//                }
+//            }catch (Exception e) {
+//                e.printStackTrace();
+//            }
+
+
+        } else {
+            Bitmap bitmap = (Bitmap)data.getExtras().get("data");
+            iv_thumbnail.setImageBitmap(bitmap);
+        }
+
+
+    }
+
+//    public String getPath(Uri uri) {
+//        String[] projection = {MediaStore.MediaColumns.DATA};
+//        Cursor cursor = managedQuery(uri, projection, null, null, null);
+//        int column_index = cursor
+//                .getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+//        cursor.moveToFirst();
+//        String imagePath = cursor.getString(column_index);
+//
+//        return cursor.getString(column_index);
+//    }
+
+
     private void updateUserPassw() {
-        Intent intent = new Intent(ProfileActivity.this, UpdatePasswActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(ProfileActivity.this, UpdatePasswActivity.class);
+//        intent.putExtra("passw", passw);
+//        startActivity(intent);
+
+        Toast.makeText(this, passw+" is your passw", Toast.LENGTH_SHORT).show();
     }
 
     private void updateUserProfile() {

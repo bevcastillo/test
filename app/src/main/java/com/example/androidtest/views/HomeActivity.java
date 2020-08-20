@@ -193,7 +193,6 @@ public class HomeActivity extends AppCompatActivity {
                         ApiResponse apiResponse = gson.fromJson(jsonData, ApiResponse.class);
 
                         Toast.makeText(HomeActivity.this, apiResponse.getMsg(), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(HomeActivity.this, jsonData+"", Toast.LENGTH_SHORT).show();
 
                         Log.i("HOMEACTIVITY", jsonData);
 
