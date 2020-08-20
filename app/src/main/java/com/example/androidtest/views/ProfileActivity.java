@@ -41,7 +41,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 tv_createDate, tv_lastLoggedin, tv_iden_off_id, tv_iden_contact, tv_iden_name,
                 tv_iden_bdate, tv_iden_age, tv_iden_cvstat, tv_iden_uname, tv_iden_email,
                 tv_iden_residence, tv_iden_permanent_addr, tv_iden_create_date, tv_update_prof,
-                tv_update_passw;
+                tv_update_passw, tv_contact;
 
     ShimmerFrameLayout shimmerTitle;
 
@@ -83,6 +83,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         tv_iden_create_date = findViewById(R.id.tv_iden_createdate);
         tv_update_prof = findViewById(R.id.tv_update_prof);
         tv_update_passw = findViewById(R.id.tv_update_passw);
+        tv_contact = findViewById(R.id.tv_contact);
 
 //        //shimmers
 //        shimmerTitle = findViewById(R.id.shimmer_title);
@@ -190,6 +191,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         tv_email.setText(email);
                         tv_createDate.setText(createDate);
                         tv_lastLoggedin.setText(lastLoggedin);
+                        tv_contact.setText(contact);
+
                     }
                 });
             }

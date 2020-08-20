@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -64,11 +65,6 @@ public class UpdateProfActivity extends AppCompatActivity implements View.OnClic
         btnUpdate.setOnClickListener(this);
         et_bdate.setOnClickListener(this);
 
-//        try {
-//            run();
-//        }catch (Exception e) {
-//
-//        }
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         gson = gsonBuilder.create();
@@ -110,7 +106,11 @@ public class UpdateProfActivity extends AppCompatActivity implements View.OnClic
 
         switch (id) {
             case R.id.btn_update_prof:
-                Toast.makeText(this, et_bdate.getText().toString()+" is your bdate!!", Toast.LENGTH_SHORT).show();
+                try {
+                    run();
+                }catch (Exception e) {
+
+                }
                 break;
             case R.id.et_bdate:
                 final Calendar calendar = Calendar.getInstance();
@@ -173,66 +173,77 @@ public class UpdateProfActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-//    void run() throws IOException {
-//
-//        final OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
-//                .build();
-//
-//        RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
-//                .addFormDataPart("include", "identification")
-//                .build();
-//
-//        final Request request = new Request.Builder()
-//                .url(Constant.EDIT_USER_PROFILE_API_URL)
-//                .method("POST", requestBody)
-//                .addHeader("Authorization", "Bearer"+strToken)
-//                .build();
-//
-//        okHttpClient.newCall(request).enqueue(new Callback() {
-//            @Override
-//            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-//                call.cancel();
-//            }
-//
-//            @Override
-//            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-//                final String jsonData = response.body().string();
-//
-//                UpdateProfActivity.this.runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        ApiResponse apiResponse = gson.fromJson(jsonData, ApiResponse.class);
-//
-//
-//                        //getting data
-//                        // firstname, middle name, lastname, suffix, username, email, bdate, contact, residence
-//
-//                        String fname = apiResponse.getData().getFname();
-//                        String mname = apiResponse.getData().getMname();
-//                        String lname = apiResponse.getData().getLname();
-//                        String suffix = apiResponse.getData().getSuffix();
-//                        String username = apiResponse.getData().getUsername();
-//                        String email = apiResponse.getData().getEmail();
-//                        String bdate = apiResponse.getData().getBirthdate();
-//                        String contact = apiResponse.getData().getContactNumber();
-//                        String residence = apiResponse.getData().getResidenceAddress();
-//
-////                        et_fname.setText(fname);
-//////                        et_mname.setText(mname);
-//////                        et_lname.setText(lname);
-//////                        et_suffix.setText(suffix);
-//////                        et_username.setText(username);
-//////                        et_email.setText(email);
-//////                        et_bdate.setText(bdate);
-//////                        et_contact.setText(contact);
-//////                        et_addr.setText(residence);
-//
-//                        Toast.makeText(UpdateProfActivity.this, fname.toString()+" is your lastname", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//                });
-//            }
-//        });
-//    }
+    void run() throws IOException {
+
+        final OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+                .build();
+
+        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                .addFormDataPart("include", "identification")
+                .build();
+
+        final Request request = new Request.Builder()
+                .url(Constant.EDIT_USER_PROFILE_API_URL)
+                .method("POST", body)
+                .addHeader("Authorization", "Bearer"+strToken)
+                .build();
+
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                call.cancel();
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                final String jsonData = response.body().string();
+
+                UpdateProfActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.i("UPDATE ACTIVITY", jsonData);
+
+                        if (validateFields()) {
+                            String lname = et_lname.getText().toString().trim();
+                            String fname = et_fname.getText().toString().trim();
+                            String mname = et_mname.getText().toString().trim();
+                            String suffix = et_suffix.getText().toString().trim();
+                            String contact = et_contact.getText().toString().trim();
+                            String addr = et_addr.getText().toString().trim();
+                            String email = et_email.getText().toString().trim();
+                            String username = et_username.getText().toString();
+                            String bday = et_bdate.getText().toString().trim();
+
+                            ApiResponse apiResponse = new ApiResponse();
+                            ApiResponse apiResponse1 = gson.fromJson(jsonData, ApiResponse.class);
+
+
+//                            apiResponse1.getData().setLname(lname);
+//                            apiResponse1.getData().setFname(fname);
+//                            apiResponse1.getData().setMname(mname);
+//                            apiResponse1.getData().setSuffix(suffix);
+//                            apiResponse1.getData().setContactNumber(contact);
+//                            apiResponse1.getData().setResidenceAddress(addr);
+//                            apiResponse1.getData().setEmail(email);
+//                            apiResponse1.getData().setUsername(username);
+//                            apiResponse1.getData().setBirthdate(bday);
+
+                            Toast.makeText(UpdateProfActivity.this, apiResponse1.getMsg()+"message", Toast.LENGTH_LONG).show();
+
+                            Log.i("####RESPONSES####", lname+fname+mname+suffix+contact+addr+email+username+bday);
+
+                        }
+
+
+
+
+
+//                        apiResponse.getData().setLname();
+
+                    }
+                });
+            }
+        });
+    }
 
 }

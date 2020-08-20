@@ -153,7 +153,7 @@
             android:background="@drawable/custom_rounded"
             android:backgroundTint="@color/lighterGray"
             android:hint="Enter suffix"
-            android:maxLength="1"
+            android:maxLength="5"
             android:inputType="text"
             android:paddingLeft="22dp"
             android:paddingTop="10dp"
