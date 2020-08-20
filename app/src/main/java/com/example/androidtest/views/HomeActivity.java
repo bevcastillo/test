@@ -2,8 +2,11 @@ package com.example.androidtest.views;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,11 +23,13 @@ import android.widget.Toast;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.androidtest.Constant;
 import com.example.androidtest.R;
+import com.example.androidtest.adapter.ArticlesAdpater;
 import com.example.androidtest.model.ApiResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -44,8 +49,10 @@ public class HomeActivity extends AppCompatActivity {
     String strMssg;
     SwipeRefreshLayout swipeRefreshLayout;
     String userToken;
-
+    RecyclerView rv_articles;
     Gson gson;
+
+    private ArticlesAdpater adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +63,7 @@ public class HomeActivity extends AppCompatActivity {
 
         tv_mssg = findViewById(R.id.tv_mssg);
         swipeRefreshLayout = findViewById(R.id.swipeToRefresh);
+        rv_articles = findViewById(R.id.rv_articles);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -68,6 +76,11 @@ public class HomeActivity extends AppCompatActivity {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gson =gsonBuilder.create();
 
+        //recyclerview
+        rv_articles.setHasFixedSize(true);
+        rv_articles.setLayoutManager(new LinearLayoutManager(this));
+
+
     }
 
     @Override
@@ -75,6 +88,12 @@ public class HomeActivity extends AppCompatActivity {
         super.onStart();
 
         displayMssg();
+
+        try {
+            displayArticles();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void displayMssg() {
@@ -155,6 +174,61 @@ public class HomeActivity extends AppCompatActivity {
     public void onBackPressed() {
         //disable onbackpressed
         super.onBackPressed();
+    }
+
+    void displayArticles() throws IOException {
+        Toast.makeText(this, "This is display articles", Toast.LENGTH_SHORT).show();
+
+        SharedPreferences userTokenPref = getApplicationContext().getSharedPreferences("UserToken", MODE_PRIVATE);
+        userToken = (userTokenPref.getString("token",""));
+
+
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+                .build();
+
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                .addFormDataPart("page", "1")
+                .addFormDataPart("per_page", "10")
+                .build();
+
+        Request request = new Request.Builder()
+                .url(Constant.ALL_PUBLISHED_ARTICLES_API)
+                .method("POST", body)
+                .addHeader("Authorization", "Bearer "+userToken)
+                .build();
+
+        Toast.makeText(this, userToken+" is your token", Toast.LENGTH_LONG).show();
+
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                call.cancel();
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                final String jsonData = response.body().string();
+
+                HomeActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(HomeActivity.this, jsonData+" are the data in articles", Toast.LENGTH_SHORT).show();
+                        Log.i("HOMEACTIVIATY", jsonData);
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(jsonData);
+                            Log.d("HOMEACTIVITY_RESPOSE", jsonObject.toString());
+
+                            Toast.makeText(HomeActivity.this, jsonObject+"", Toast.LENGTH_SHORT).show();
+                        }catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
+
     }
 
     void run() throws IOException {
