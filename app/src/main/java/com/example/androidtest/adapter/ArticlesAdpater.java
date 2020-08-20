@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.androidtest.R;
@@ -22,11 +23,11 @@ import java.util.List;
 public class ArticlesAdpater extends RecyclerView.Adapter<ArticlesAdpater.ViewHolder> {
 
     private Context context;
-    private List<Articles> listdata;
+    private List<Datum> listdata;
     private RequestOptions options;
 
 
-    public ArticlesAdpater(Context context, List<Articles> listdata) {
+    public ArticlesAdpater(Context context, List<Datum> listdata) {
         this.context = context;
         this.listdata = listdata;
 
@@ -47,7 +48,13 @@ public class ArticlesAdpater extends RecyclerView.Adapter<ArticlesAdpater.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Articles articles = listdata.get(position);
+        Datum datum = listdata.get(position);
+
+        holder.tvTitle.setText(datum.getTitle());
+        holder.tvDate.setText(datum.getDateCreated().getDateDb());
+
+        Glide.with(context).load(datum.getThumbnail().getThumbPath()).apply(options).into(holder.ivThumbnail);
+
 
     }
 

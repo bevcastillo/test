@@ -213,10 +213,13 @@ public class HomeActivity extends AppCompatActivity {
                     public void run() {
                         Articles articles = gson.fromJson(jsonResponse, Articles.class);
                         Log.i("JSON_RES", jsonResponse);
-                        Log.i("MESSAGE", articles.getMsg());
+                        Log.i("MESSAGE", String.valueOf(articles.getData().size()));
                         Log.i("ARTICLES", articles.toString());
 
-                        Toast.makeText(HomeActivity.this, articles.getMsg()+"\n"+articles.toString(), Toast.LENGTH_LONG).show();
+                        adapter = new ArticlesAdpater(HomeActivity.this, articles.getData());
+                        rv_articles.setAdapter(adapter);
+
+                        adapter.notifyDataSetChanged();
 
 
                     }

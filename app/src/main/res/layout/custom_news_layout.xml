@@ -21,14 +21,14 @@
 
     <TextView
         android:id="@+id/tv_title"
-        style="@style/TextAppearance.AppCompat.Headline"
+        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:ellipsize="end"
-        android:maxLines="1"
+        android:maxLines="2"
         android:text="some title"
         card_view:layout_constraintEnd_toStartOf="@+id/iv_article_image"
         card_view:layout_constraintStart_toStartOf="parent"
@@ -38,11 +38,11 @@
         android:id="@+id/imageview"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="16dp"
         android:src="@drawable/ic_watch"
         android:tint="@android:color/darker_gray"
+        card_view:layout_constraintBottom_toBottomOf="@+id/tv_date"
         card_view:layout_constraintStart_toStartOf="@+id/tv_title"
-        card_view:layout_constraintTop_toBottomOf="@+id/tv_title" />
+        card_view:layout_constraintTop_toTopOf="@+id/tv_date" />
 
     <TextView
         android:id="@+id/tv_date"
@@ -50,14 +50,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:text="00-00-00"
-        card_view:layout_constraintBottom_toBottomOf="@+id/imageview"
         card_view:layout_constraintEnd_toStartOf="@+id/iv_article_image"
         card_view:layout_constraintStart_toEndOf="@+id/imageview"
-        card_view:layout_constraintTop_toTopOf="@+id/imageview"
-        card_view:layout_constraintVertical_bias="1.0" />
+        card_view:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <View
         style="@style/Divider"
