@@ -11,5 +11,6 @@
     <color name="colorText">#313131</color>
     <color name="colorLighGray">#525252</color>
     <color name="lighterGray">#eeeeee</color>
+    <color name="gray">#DCDCDC</color>
 
 </resources>

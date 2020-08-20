@@ -51,4 +51,7 @@ dependencies {
     // For loading and tinting drawables on older versions of the platform
     implementation "androidx.appcompat:appcompat-resources:1.2.0"
     implementation("com.squareup.okhttp3:okhttp:4.3.0")
+
+    // Shimmer facebook effect when data is loading
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 }

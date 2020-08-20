@@ -27,9 +27,9 @@ public class SplashScreen extends AppCompatActivity {
 
         iv_logo = findViewById(R.id.iv_logo);
 
-        Animator translateAnimator = AnimatorInflater.loadAnimator(this, R.animator.translate);
-        translateAnimator.setTarget(iv_logo);
-        translateAnimator.start();
+//        Animator translateAnimator = AnimatorInflater.loadAnimator(this, R.animator.translate);
+//        translateAnimator.setTarget(iv_logo);
+//        translateAnimator.start();
 
         new Handler().postDelayed(new Runnable() {
             @Override

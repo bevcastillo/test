@@ -5,16 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.SplashScreen"
-    android:background="@color/colorPrimary">
+    android:background="@android:color/white">
 
     <ImageView
         android:id="@+id/iv_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/ic_campaign"
+        android:src="@drawable/ic_app"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_created_by"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:text="Created by \nBeverly May Castillo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

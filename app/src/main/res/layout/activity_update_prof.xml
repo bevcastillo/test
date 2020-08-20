@@ -4,56 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.RegisterActivity"
-    android:fillViewport="true"
-    android:background="@android:color/white">
+    tools:context=".UpdateProfActivity"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/iv_logo"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="24dp"
-            android:src="@drawable/ic_welcome_amico"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/welcome_heading"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:gravity="center"
-            android:text="Create Account"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
-
-        <TextView
-            android:id="@+id/signin_heading"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:text="Create a new account to get started"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welcome_heading"
-            android:gravity="center"/>
 
         <TextView
             android:id="@+id/textView"
@@ -62,13 +18,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:text="Firstname"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signin_heading" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/et_fname"
@@ -81,17 +37,14 @@
             android:layout_marginRight="24dp"
             android:background="@drawable/custom_rounded"
             android:backgroundTint="@color/lighterGray"
-            android:drawableLeft="@drawable/ic_profile"
-            android:drawablePadding="16dp"
-            android:drawableTint="#2493ff"
             android:hint="Enter firstname"
             android:inputType="text"
-            android:paddingLeft="10dp"
+            android:paddingLeft="22dp"
             android:paddingTop="10dp"
             android:paddingRight="22dp"
             android:paddingBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -105,10 +58,50 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:text="Lastname"
+            android:text="Middle name"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_fname" />
+
+        <EditText
+            android:id="@+id/et_mname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/custom_rounded"
+            android:backgroundTint="@color/lighterGray"
+            android:hint="Enter middle name"
+            android:inputType="text"
+            android:paddingLeft="22dp"
+            android:paddingTop="10dp"
+            android:paddingRight="22dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/TextAppearance.AppCompat.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="Lastname"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_mname" />
 
         <EditText
             android:id="@+id/et_lname"
@@ -121,58 +114,16 @@
             android:layout_marginRight="24dp"
             android:background="@drawable/custom_rounded"
             android:backgroundTint="@color/lighterGray"
-            android:drawableLeft="@drawable/ic_profile"
-            android:drawablePadding="16dp"
-            android:drawableTint="#2493ff"
             android:hint="Enter lastname"
             android:inputType="text"
-            android:paddingLeft="10dp"
+            android:paddingLeft="22dp"
             android:paddingTop="10dp"
             android:paddingRight="22dp"
             android:paddingBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView1" />
-
-        <TextView
-            android:id="@+id/textView2"
-            style="@style/TextAppearance.AppCompat.Caption"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:text="Contact number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_lname" />
-
-
-        <EditText
-            android:id="@+id/et_ctc_num"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:hint="Enter contact number"
-            android:inputType="phone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            android:backgroundTint="@color/lighterGray"
-            android:background="@drawable/custom_rounded"
-            android:paddingLeft="10dp"
-            android:drawablePadding="16dp"
-            android:drawableLeft="@drawable/ic_call"
-            android:drawableTint="#2493ff"
-            android:paddingRight="22dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <TextView
             android:id="@+id/textView3"
@@ -184,13 +135,14 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:text="Email"
+            android:text="Suffix"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_ctc_num" />
+            app:layout_constraintTop_toBottomOf="@+id/et_lname" />
 
         <EditText
-            android:id="@+id/et_email"
+            android:id="@+id/et_suffix"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -198,20 +150,19 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:hint="Enter email"
-            android:inputType="textEmailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            android:backgroundTint="@color/lighterGray"
             android:background="@drawable/custom_rounded"
-            android:paddingLeft="10dp"
-            android:drawablePadding="16dp"
-            android:drawableLeft="@drawable/ic_address"
-            android:drawableTint="#2493ff"
-            android:paddingRight="22dp"
+            android:backgroundTint="@color/lighterGray"
+            android:hint="Enter suffix"
+            android:maxLength="1"
+            android:inputType="text"
+            android:paddingLeft="22dp"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp"/>
+            android:paddingRight="22dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <TextView
             android:id="@+id/textView4"
@@ -223,14 +174,14 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:text="Password"
+            android:text="Username"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_email" />
-
+            app:layout_constraintTop_toBottomOf="@+id/et_suffix" />
 
         <EditText
-            android:id="@+id/et_passw"
+            android:id="@+id/et_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -238,20 +189,18 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:hint="Enter password"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
-            android:backgroundTint="@color/lighterGray"
             android:background="@drawable/custom_rounded"
-            android:paddingLeft="10dp"
-            android:drawablePadding="16dp"
-            android:drawableLeft="@drawable/ic_lock"
-            android:drawableTint="#2493ff"
-            android:paddingRight="22dp"
+            android:backgroundTint="@color/lighterGray"
+            android:hint="Enter username"
+            android:inputType="text"
+            android:paddingLeft="22dp"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp"/>
+            android:paddingRight="22dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
             android:id="@+id/textView5"
@@ -263,13 +212,14 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:text="Re-enter password"
+            android:text="Email"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_passw" />
+            app:layout_constraintTop_toBottomOf="@+id/et_username" />
 
         <EditText
-            android:id="@+id/et_re_passw"
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -277,52 +227,37 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:hint="Re-enter password"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            android:background="@drawable/custom_rounded"
             android:backgroundTint="@color/lighterGray"
-            android:background="@drawable/custom_rounded"
-            android:paddingLeft="10dp"
-            android:drawablePadding="16dp"
-            android:drawableLeft="@drawable/ic_lock"
-            android:drawableTint="#2493ff"
-            android:paddingRight="22dp"
+            android:hint="Enter email"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="22dp"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp"/>
-
-        <Button
-            android:id="@+id/btn_register"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:text="CREATE ACCOUNT"
+            android:paddingRight="22dp"
+            android:paddingBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_type"
-            android:background="@drawable/custom_rounded"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColor="@android:color/white"/>
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <TextView
-            android:id="@+id/tv_type_heading"
+            android:id="@+id/textView6"
             style="@style/TextAppearance.AppCompat.Caption"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginTop="16dp"
-            android:text="Select user type"
-            app:layout_constraintStart_toStartOf="@+id/et_re_passw"
-            app:layout_constraintTop_toBottomOf="@+id/et_re_passw" />
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="Birthdate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
-
-        <Spinner
-            android:id="@+id/spinner_type"
+        <EditText
+            android:id="@+id/et_bdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -330,47 +265,115 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:entries="@array/user_type"
-            android:padding="10dp"
+            android:background="@drawable/custom_rounded"
+            android:backgroundTint="@color/lighterGray"
+            android:hint="Select birthdate"
+            android:inputType="text"
+            android:paddingLeft="22dp"
+            android:paddingTop="10dp"
+            android:paddingRight="22dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView7"
+            style="@style/TextAppearance.AppCompat.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="Contact number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_type_heading"
-            android:backgroundTint="@color/lighterGray"
-            android:background="@drawable/custom_rounded"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-            style="@style/TextAppearance.AppCompat.Medium"/>
+            app:layout_constraintTop_toBottomOf="@+id/et_bdate" />
 
-        <LinearLayout
-            android:id="@+id/layout"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/et_ctc_num"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/custom_rounded"
+            android:backgroundTint="@color/lighterGray"
+            android:hint="Enter contact number"
+            android:inputType="phone"
+            android:paddingLeft="22dp"
+            android:paddingTop="10dp"
+            android:paddingRight="22dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <TextView
+            android:id="@+id/textView8"
+            style="@style/TextAppearance.AppCompat.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="Residence Address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_ctc_num" />
+
+
+        <EditText
+            android:id="@+id/et_radd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/custom_rounded"
+            android:backgroundTint="@color/lighterGray"
+            android:hint="Enter residence address"
+            android:inputType="text"
+            android:paddingLeft="22dp"
+            android:paddingTop="10dp"
+            android:paddingRight="22dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <Button
+            android:id="@+id/btn_update_prof"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginTop="32dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@+id/btn_register"
-            app:layout_constraintStart_toStartOf="@+id/btn_register"
-            app:layout_constraintTop_toBottomOf="@+id/btn_register"
-            android:paddingBottom="32dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Already have an account?"/>
-
-            <TextView
-                android:id="@+id/tv_login"
-                style="@style/TextAppearance.AppCompat.Subhead"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Login"
-                android:paddingLeft="4dp"
-                android:textColor="@color/colorPrimary"/>
-
-        </LinearLayout>
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/custom_rounded"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="UPDATE PROFILE"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_radd" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

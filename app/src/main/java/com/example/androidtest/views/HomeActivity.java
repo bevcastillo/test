@@ -7,21 +7,35 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.androidtest.ProfileActivity;
 import com.example.androidtest.R;
 
 public class HomeActivity extends AppCompatActivity {
+
+    TextView tv_mssg;
+    String strMssg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        tv_mssg = findViewById(R.id.tv_mssg);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        //getting the mssg data from MainActivity
+        Bundle bundle = this.getIntent().getExtras();
+
+        if (bundle != null) {
+            strMssg = bundle.getString("mssg");
+            tv_mssg.setText(strMssg);
+        }
 
     }
 

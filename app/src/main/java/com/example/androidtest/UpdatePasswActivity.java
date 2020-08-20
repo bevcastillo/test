@@ -3,17 +3,14 @@ package com.example.androidtest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
-public class ProfileActivity extends AppCompatActivity {
-
-    TextView tv_details;
+public class UpdatePasswActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_update_passw);
 
-        tv_details = findViewById(R.id.tv_details);
+        setTitle("Update Password");
     }
 }

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.androidtest.Constant;
 import com.example.androidtest.R;
 import com.example.androidtest.helper.Api;
+import com.example.androidtest.model.ApiResponse;
 import com.example.androidtest.model.Payload;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -40,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     Button btnRegister;
     TextView tvLogin;
     String selectedUserType;
+    ImageView iv_logo;
 
     Gson gson;
 
@@ -48,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //changing to ligh status bar
+        //changing to light status bar
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         //
@@ -61,6 +63,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         spinnerType = findViewById(R.id.spinner_type);
         btnRegister = findViewById(R.id.btn_register);
         tvLogin = findViewById(R.id.tv_login);
+        iv_logo = findViewById(R.id.iv_logo);
+
+        //adding animation to logo
+        Animator translateAnimator = AnimatorInflater.loadAnimator(this, R.animator.translate);
+        translateAnimator.setTarget(iv_logo);
+        translateAnimator.start();
 
         btnRegister.setOnClickListener(this);
         tvLogin.setOnClickListener(this);
@@ -198,9 +206,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(RegisterActivity.this, "Successfully Registered!", Toast.LENGTH_SHORT).show();
+
+                            ApiResponse apiResponse = gson.fromJson(strResponse, ApiResponse.class);
+
+                            Toast.makeText(RegisterActivity.this, apiResponse.getMsg(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                             startActivity(intent);
+
+
                         }
                     });
                 }
