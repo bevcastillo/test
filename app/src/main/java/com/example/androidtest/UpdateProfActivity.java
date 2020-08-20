@@ -3,6 +3,7 @@ package com.example.androidtest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,10 +13,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.androidtest.model.ApiResponse;
+import com.example.androidtest.views.HomeActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonObject;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONException;
 import org.json.JSONStringer;
 
 import java.io.IOException;
@@ -23,6 +28,7 @@ import java.util.Calendar;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -108,6 +114,7 @@ public class UpdateProfActivity extends AppCompatActivity implements View.OnClic
             case R.id.btn_update_prof:
                 try {
                     run();
+//                    updateUser();
                 }catch (Exception e) {
 
                 }
@@ -129,6 +136,72 @@ public class UpdateProfActivity extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
+
+    private void updateUser(String fname, String mname, String lname, String suffix, String username, String email, String birthdate, String contact, String address) {
+        if (validateFields()) {
+
+            ApiResponse apiResponse = new ApiResponse();
+
+            apiResponse.getData().setLname(lname);
+            apiResponse.getData().setFname(fname);
+            apiResponse.getData().setMname(mname);
+            apiResponse.getData().setSuffix(suffix);
+            apiResponse.getData().setContactNumber(contact);
+            apiResponse.getData().setResidenceAddress(address);
+            apiResponse.getData().setEmail(email);
+            apiResponse.getData().setUsername(username);
+            apiResponse.getData().setBirthdate(birthdate);
+        }
+    }
+
+//    public void doRegisterUser(ApiResponse apiResponse, String url) throws JSONException {
+//
+//            String lname = et_lname.getText().toString().trim();
+//            String fname = et_fname.getText().toString().trim();
+//            String mname = et_mname.getText().toString().trim();
+//            String suffix = et_suffix.getText().toString().trim();
+//            String contact = et_contact.getText().toString().trim();
+//            String addr = et_addr.getText().toString().trim();
+//            String email = et_email.getText().toString().trim();
+//            String username = et_username.getText().toString();
+//            String bday = et_bdate.getText().toString().trim();
+//
+//            OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+//                    .build();
+//            MediaType mediaType = MediaType.parse("text/plain");
+//            final RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+//                    .addFormDataPart("fname", fname)
+//                    .addFormDataPart("mname", mname)
+//                    .addFormDataPart("lname", lname)
+//                    .addFormDataPart("suffix", suffix)
+//                    .addFormDataPart("username", username)
+//                    .addFormDataPart("email", email)
+//                    .addFormDataPart("birthdate", bday)
+//                    .addFormDataPart("contact_number", contact)
+//                    .addFormDataPart("residence_address", addr)
+//                    .build();
+//
+//            Request request = new Request.Builder()
+//                    .url(Constant.EDIT_USER_PROFILE_API_URL)
+//                    .method("POST", body)
+//                    .addHeader("Authorization", "Bearer "+strToken)
+//                    .build();
+//
+//            okHttpClient.newCall(request).enqueue(new Callback() {
+//                @Override
+//                public void onFailure(@NotNull Call call, @NotNull IOException e) {
+//                    call.cancel();
+//                    Toast.makeText(UpdateProfActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+//                }
+//
+//                @Override
+//                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+//                    Toast.makeText(UpdateProfActivity.this, "Success", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//
+//
+//    }
 
     private boolean validateFields() {
         String fname = et_fname.getText().toString().trim();
@@ -175,11 +248,30 @@ public class UpdateProfActivity extends AppCompatActivity implements View.OnClic
 
     void run() throws IOException {
 
+        String lname = et_lname.getText().toString().trim();
+        String fname = et_fname.getText().toString().trim();
+        String mname = et_mname.getText().toString().trim();
+        String suffix = et_suffix.getText().toString().trim();
+        String contact = et_contact.getText().toString().trim();
+        String addr = et_addr.getText().toString().trim();
+        String email = et_email.getText().toString().trim();
+        String username = et_username.getText().toString();
+        String bday = et_bdate.getText().toString().trim();
+
         final OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
                 .build();
 
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addFormDataPart("include", "identification")
+                .addFormDataPart("fname", fname)
+                .addFormDataPart("mname", mname)
+                .addFormDataPart("lname", lname)
+                .addFormDataPart("suffix", suffix)
+                .addFormDataPart("username", username)
+                .addFormDataPart("email", email)
+                .addFormDataPart("birthdate", bday)
+                .addFormDataPart("contact_number", contact)
+                .addFormDataPart("residence_address", addr)
                 .build();
 
         final Request request = new Request.Builder()
@@ -218,28 +310,20 @@ public class UpdateProfActivity extends AppCompatActivity implements View.OnClic
                             ApiResponse apiResponse1 = gson.fromJson(jsonData, ApiResponse.class);
 
 
-//                            apiResponse1.getData().setLname(lname);
-//                            apiResponse1.getData().setFname(fname);
-//                            apiResponse1.getData().setMname(mname);
-//                            apiResponse1.getData().setSuffix(suffix);
-//                            apiResponse1.getData().setContactNumber(contact);
-//                            apiResponse1.getData().setResidenceAddress(addr);
-//                            apiResponse1.getData().setEmail(email);
-//                            apiResponse1.getData().setUsername(username);
-//                            apiResponse1.getData().setBirthdate(bday);
+                            apiResponse1.getData().setLname(lname);
+                            apiResponse1.getData().setFname(fname);
+                            apiResponse1.getData().setMname(mname);
+                            apiResponse1.getData().setSuffix(suffix);
+                            apiResponse1.getData().setContactNumber(contact);
+                            apiResponse1.getData().setResidenceAddress(addr);
+                            apiResponse1.getData().setEmail(email);
+                            apiResponse1.getData().setUsername(username);
+                            apiResponse1.getData().setBirthdate(bday);
 
                             Toast.makeText(UpdateProfActivity.this, apiResponse1.getMsg()+"message", Toast.LENGTH_LONG).show();
-
-                            Log.i("####RESPONSES####", lname+fname+mname+suffix+contact+addr+email+username+bday);
-
+                            Intent intent = new Intent(UpdateProfActivity.this, HomeActivity.class);
+                            startActivity(intent);
                         }
-
-
-
-
-
-//                        apiResponse.getData().setLname();
-
                     }
                 });
             }
