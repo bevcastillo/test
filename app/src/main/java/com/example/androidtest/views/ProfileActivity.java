@@ -8,19 +8,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.androidtest.Constant;
 import com.example.androidtest.R;
-import com.example.androidtest.UpdatePasswActivity;
-import com.example.androidtest.UpdateProfActivity;
-import com.example.androidtest.helper.Api;
 import com.example.androidtest.model.ApiResponse;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -33,7 +27,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 

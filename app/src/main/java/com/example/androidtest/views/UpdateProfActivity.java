@@ -1,4 +1,4 @@
-package com.example.androidtest;
+package com.example.androidtest.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,29 +12,24 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.androidtest.Constant;
+import com.example.androidtest.R;
 import com.example.androidtest.model.ApiResponse;
-import com.example.androidtest.views.HomeActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonObject;
 
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONException;
-import org.json.JSONStringer;
 
 import java.io.IOException;
 import java.util.Calendar;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import retrofit2.http.POST;
 
 public class UpdateProfActivity extends AppCompatActivity implements View.OnClickListener {
 

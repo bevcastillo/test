@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         GsonBuilder gsonBuilder = new GsonBuilder();
         gson = gsonBuilder.create();
 
+
     }
 
     @Override
@@ -163,6 +164,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                             intent.putExtra("mssg", apiResponse.getMsg());
                             startActivity(intent);
+
+//                            Bundle bundle = new Bundle();
+//                            bundle.putString("mssg", apiResponse.getMsg());
+//
+//                            HomeFragment fragment = new HomeFragment();
+//                            fragment.setArguments(bundle);
+//
+//                            Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
+//                            startActivity(intent);
+
+
+//                            FragmentManager manager = getSupportFragmentManager();
+//                            FragmentTransaction fragmentTransaction = manager.beginTransaction();
+//                            HomeFragment homeFragment = new HomeFragment();
+//
+//                            Bundle bundle = new Bundle();
+//                            bundle.putString("mssg", apiResponse.getMsg());
+//
+//                            homeFragment.setArguments(bundle);
+//                            fragmentTransaction.add()
+
 
                         }
                     });
