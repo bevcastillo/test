@@ -50,6 +50,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     Gson gson;
 
     String userToken;
+    String lname, fname, mname, suffix, bdate, uname, email, contact, residenceAddr;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,21 +157,22 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         //getting data from ApiResponse object
 
                         String mssg = apiResponse.getMsg();
-                        String lname = apiResponse.getData().getLname();
-                        String fname = apiResponse.getData().getFname();
+                        lname = apiResponse.getData().getLname();
+                        fname = apiResponse.getData().getFname();
                         String userType = apiResponse.getData().getUserType();
-                        String mname = apiResponse.getData().getMname();
-                        String suffix = apiResponse.getData().getSuffix();
+                        mname = apiResponse.getData().getMname();
+                        suffix = apiResponse.getData().getSuffix();
                         String withId = apiResponse.getData().getWithId();
-                        String bdate = apiResponse.getData().getBirthdate();
+                        bdate = apiResponse.getData().getBirthdate();
                         String age = apiResponse.getData().getAge();
                         String civilStat = apiResponse.getData().getCivilStatus();
                         String name = apiResponse.getData().getName();
-                        String uname = apiResponse.getData().getUsername();
-                        String email = apiResponse.getData().getEmail();
-                        String residenceAddr = apiResponse.getData().getResidenceAddress();
+                        uname = apiResponse.getData().getUsername();
+                        email = apiResponse.getData().getEmail();
+                        residenceAddr = apiResponse.getData().getResidenceAddress();
                         String brgy = apiResponse.getData().getBrgy();
                         String district = apiResponse.getData().getDistrict();
+                        contact = apiResponse.getData().getContactNumber();
 
                         String createDate = apiResponse.getData().getDateCreated().getDateDb();
                         String lastLoggedin = apiResponse.getData().getLastLogin().getDateDb();
@@ -187,19 +190,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         tv_email.setText(email);
                         tv_createDate.setText(createDate);
                         tv_lastLoggedin.setText(lastLoggedin);
-
-                        tv_iden_off_id = findViewById(R.id.tv_iden_id);
-                        tv_iden_contact = findViewById(R.id.tv_iden_ctcnum);
-                        tv_iden_name = findViewById(R.id.tv_iden_name);
-                        tv_iden_bdate = findViewById(R.id.tv_iden_bdate);
-                        tv_iden_age = findViewById(R.id.tv_iden_age);
-                        tv_iden_cvstat = findViewById(R.id.tv_iden_cvstat);
-                        tv_iden_uname = findViewById(R.id.tv_iden_uname);
-                        tv_iden_email = findViewById(R.id.tv_iden_email);
-                        tv_iden_residence = findViewById(R.id.tv_iden_radd);
-                        tv_iden_permanent_addr = findViewById(R.id.tv_iden_padd);
-                        tv_iden_create_date = findViewById(R.id.tv_iden_createdate);
-
                     }
                 });
             }
@@ -231,6 +221,15 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         //passing the token to UpdateProfile activity
         Intent intent = new Intent(ProfileActivity.this, UpdateProfActivity.class);
         intent.putExtra("user_token", userToken);
+        intent.putExtra("fname", fname);
+        intent.putExtra("mname", mname);
+        intent.putExtra("lname", lname);
+        intent.putExtra("suffix", suffix);
+        intent.putExtra("email", email);
+        intent.putExtra("username", uname);
+        intent.putExtra("contact", contact);
+        intent.putExtra("residence", residenceAddr);
+        intent.putExtra("bdate", bdate);
         startActivity(intent);
 
     }

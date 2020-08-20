@@ -11,8 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UpdateProfActivity"></activity>
-        <activity android:name=".UpdatePasswActivity" />
+        <activity android:name=".UpdateProfActivity"
+            android:parentActivityName=".views.ProfileActivity"></activity>
+        <activity android:name=".UpdatePasswActivity"
+            android:parentActivityName=".views.ProfileActivity"/>
         <activity
             android:name=".views.ProfileActivity"
             android:parentActivityName=".views.HomeActivity" />

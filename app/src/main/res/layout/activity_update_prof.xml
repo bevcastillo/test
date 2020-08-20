@@ -336,7 +336,7 @@
         <EditText
             android:id="@+id/et_radd"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="8dp"
@@ -350,6 +350,7 @@
             android:paddingTop="10dp"
             android:paddingRight="22dp"
             android:paddingBottom="10dp"
+            android:gravity="top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"

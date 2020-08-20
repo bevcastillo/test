@@ -9,5 +9,6 @@ public class Constant {
     public static final String USER_LOGOUT = BASE_URL+"/api/citizen/logout.json";
 
     public static final String USER_PROFILE_API_URL = BASE_URL+"/api/citizen/profile/show.json";
+    public static final String EDIT_USER_PROFILE_API_URL = BASE_URL+"/api/citizen/profile/edit-profile.json";
 
 }
