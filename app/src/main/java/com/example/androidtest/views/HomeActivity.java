@@ -25,6 +25,7 @@ import com.example.androidtest.Constant;
 import com.example.androidtest.R;
 import com.example.androidtest.adapter.ArticlesAdpater;
 import com.example.androidtest.model.ApiResponse;
+import com.example.androidtest.model.articles.Articles;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -177,30 +178,27 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     void displayArticles() throws IOException {
-        Toast.makeText(this, "This is display articles", Toast.LENGTH_SHORT).show();
 
         SharedPreferences userTokenPref = getApplicationContext().getSharedPreferences("UserToken", MODE_PRIVATE);
         userToken = (userTokenPref.getString("token",""));
 
 
-        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+        OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
 
-        MediaType mediaType = MediaType.parse("text/plain");
-        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+        RequestBody body1 = new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addFormDataPart("page", "1")
                 .addFormDataPart("per_page", "10")
                 .build();
 
-        Request request = new Request.Builder()
-                .url(Constant.ALL_PUBLISHED_ARTICLES_API)
-                .method("POST", body)
+        Request request1 = new Request.Builder()
+                .url("http://internal.cebu.cityserv.ph/api/article/all.json")
+                .method("POST", body1)
                 .addHeader("Authorization", "Bearer "+userToken)
                 .build();
 
-        Toast.makeText(this, userToken+" is your token", Toast.LENGTH_LONG).show();
 
-        okHttpClient.newCall(request).enqueue(new Callback() {
+        client.newCall(request1).enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 call.cancel();
@@ -208,22 +206,19 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                final String jsonData = response.body().string();
+                final String jsonResponse = response.body().string();
 
                 HomeActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(HomeActivity.this, jsonData+" are the data in articles", Toast.LENGTH_SHORT).show();
-                        Log.i("HOMEACTIVIATY", jsonData);
+                        Articles articles = gson.fromJson(jsonResponse, Articles.class);
+                        Log.i("JSON_RES", jsonResponse);
+                        Log.i("MESSAGE", articles.getMsg());
+                        Log.i("ARTICLES", articles.toString());
 
-                        try {
-                            JSONObject jsonObject = new JSONObject(jsonData);
-                            Log.d("HOMEACTIVITY_RESPOSE", jsonObject.toString());
+                        Toast.makeText(HomeActivity.this, articles.getMsg()+"\n"+articles.toString(), Toast.LENGTH_LONG).show();
 
-                            Toast.makeText(HomeActivity.this, jsonObject+"", Toast.LENGTH_SHORT).show();
-                        }catch (Exception e) {
-                            e.printStackTrace();
-                        }
+
                     }
                 });
             }
@@ -248,8 +243,6 @@ public class HomeActivity extends AppCompatActivity {
                 .method("POST", body)
                 .addHeader("Authorization", "Bearer"+userToken)
                 .build();
-
-        Toast.makeText(this, userToken+"", Toast.LENGTH_LONG).show();
 
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
