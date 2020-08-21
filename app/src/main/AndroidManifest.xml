@@ -19,7 +19,8 @@
             android:parentActivityName=".views.HomeActivity"></activity>
         <activity
             android:name=".views.UpdateProfActivity"
-            android:parentActivityName=".views.ProfileActivity" />
+            android:parentActivityName=".views.ProfileActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity
             android:name=".views.UpdatePasswActivity"
             android:parentActivityName=".views.ProfileActivity" />
